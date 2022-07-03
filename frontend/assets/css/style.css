@@ -1,0 +1,42 @@
+:root {
+  --primary-color: rgb(19, 56, 124);
+  --secondary-color: rgb(24, 83, 192);
+  --tertiary-color: rgb(33, 107, 247);
+
+  --white-color: rgb(255, 255, 255);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 2rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: var(--primary-color);
+  background-color: var(--primary-color);
+}
+
+.container {
+  max-width: 60rem;
+  margin: 15rem auto;
+  padding: 4rem;
+  border-radius: 1.5rem;
+  background-color: var(--white-color);
+}
+
+.container > h1 {
+  font-size: 4rem;
+  margin-bottom: 3rem;
+}
+
+.container p {
+  text-align: justify;
+}
