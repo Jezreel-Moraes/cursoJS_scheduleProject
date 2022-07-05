@@ -1,15 +1,27 @@
 const express = require("express");
 const route = express.Router();
+const { loginRequired } = require("./src/middlewares/middleware");
 
 // home
 
-const homeController = require("./src/controllers/homeController");
-route.get("/", homeController);
+const indexController = require("./src/controllers/indexController");
+route.get("/", indexController);
 
-//form
+// login
 
-const formController = require("./src/controllers/formController");
-route.get("/form", formController.get);
-route.post("/form", formController.post);
+const loginController = require("./src/controllers/loginController");
+route.get("/login", loginController.index);
+route.get("/login/logout", loginController.logout);
+route.post("/login/register", loginController.register);
+route.post("/login/login", loginController.login);
+
+// contacts
+
+const contactsController = require("./src/controllers/contactsController");
+route.get("/contacts", loginRequired, contactsController.index);
+route.post("/contacts/register", loginRequired, contactsController.register);
+route.get("/contacts/:id", loginRequired, contactsController.editIndex);
+route.post("/contacts/edit/:id", loginRequired, contactsController.edit);
+route.get("/contacts/delete/:id", loginRequired, contactsController.delete);
 
 module.exports = route;

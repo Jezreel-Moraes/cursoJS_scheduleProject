@@ -1,10 +1,55 @@
-<%- include('includes/head'); %>
+<%- include('includes/head'); %> <%- include('includes/navbar'); %>
 
-<section class="container">
-  <h1><%= someVariable %></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
 
-  <p><%= homeGetVariable %></p>
-  <p>alguma coisa</p>
-</section>
+    <div class="col-lg-8 my-3">
+      <div class="row my-3">
+        <h1 class="text-center">Agenda</h1>
+        <p class="text-center lead">Seus contatos estão abaixo.</p>
+
+        <%- include('includes/messages');%> <% if (contacts.length) { %>
+
+        <div class="responsive-table my-5">
+          <table class="table">
+            <thead>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>E-mail</th>
+              <th>Telefone</th>
+              <th>Editar</th>
+              <th>Remover</th>
+            </thead>
+
+            <% contacts.forEach(contact => { %>
+            <tr>
+              <td><%- contact.name %></td>
+              <td><%- contact.lastName %></td>
+              <td><%- contact.email %></td>
+              <td><%- contact.tel %></td>
+              <td><a href="/contacts/<%- contact._id %>">Editar</a></td>
+              <td>
+                <a
+                  class="text-danger"
+                  href="/contacts/delete/<%- contact._id %>"
+                  >Remover</a
+                >
+              </td>
+            </tr>
+            <% }); %>
+          </table>
+          <% } else { %>
+
+          <p class="text-center lead">Nenhum contato cadastrado!</p>
+
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-2"></div>
+  </div>
+</div>
 
 <%- include('includes/footer'); %>
